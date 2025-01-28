@@ -36,7 +36,6 @@ func spawnBottle():
 		var sideVal = sides[randi_range(0,2)]
 		match sideVal:
 			var x when x == "bottom":
-				print("going from bottom")
 				#we want to spawn from the bottom of the screen, meaning we have to generate a value
 				#randomly within those fields, y does not chaneg, x does'
 				var center = viewportSize/2.0
@@ -54,7 +53,6 @@ func spawnBottle():
 				var centerDir  = screenCenter - bottleInst.global_position
 				bottleInst.throw(centerDir , 1000)
 			var x when x == "left":
-				print("going from left")
 				var center = viewportSize/2.0
 				#want to make it so the y is at the bottom
 				center.x = viewportSize.x - viewportSize.x
@@ -70,7 +68,6 @@ func spawnBottle():
 				
 				bottleInst.throw(centerDir , 1000)
 			var x when x == "right":
-				print("going from right")
 				var center = viewportSize/2.0
 				#want to make it so the y is at the bottom
 				center.x = center.x + center.x
@@ -85,11 +82,15 @@ func spawnBottle():
 				var centerDir = screenCenter - bottleInst.global_position
 				
 				bottleInst.throw(centerDir , 1000)
-		maxBottles -= 1
+		maxBottles -= 0
 			
 
 			
 			
 			
 	#first narrow down what side it will come from
-	
+func bottleHit(bot) -> void:
+	print("hit bottle")
+	for bottle in bottles.get_children():
+		if bot == bottle:
+			bottle.queue_free()

@@ -7,7 +7,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l88ii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7d8fe"]
-size = Vector2(3.6, 11.3)
+size = Vector2(2.7, 3.88)
 
 [node name="Bottle" type="Node2D"]
 script = ExtResource("1_cyf13")
@@ -24,3 +24,9 @@ shape = SubResource("RectangleShape2D_7d8fe")
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
 scale = Vector2(0.042, 0.0318056)
 texture = ExtResource("2_qqpwf")
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+scale = Vector2(50, 50)
+shape = SubResource("RectangleShape2D_7d8fe")
