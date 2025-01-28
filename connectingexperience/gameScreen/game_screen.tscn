@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://br02itwpdod8y"]
+
+[ext_resource type="Script" path="res://gameScreen/scripts/gameScreen.gd" id="1_k3egy"]
+[ext_resource type="PackedScene" uid="uid://bsti3ppxt6h87" path="res://gameObjects/throwables/level1/bottle.tscn" id="2_sds7d"]
+[ext_resource type="Script" path="res://gameScreen/scripts/timer.gd" id="3_hkk0n"]
+
+[node name="gameScreen" type="Node2D"]
+script = ExtResource("1_k3egy")
+tempBottle = ExtResource("2_sds7d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+script = ExtResource("3_hkk0n")
+
+[node name="bottles" type="Node2D" parent="."]
