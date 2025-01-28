@@ -9,3 +9,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	pass
+
+
+func throw(direction:Vector2, strength:float) -> void:
+	print("thrwoing")
+	var force = direction.normalized() * strength
+	self.apply_central_impulse( force)

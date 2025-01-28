@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bsti3ppxt6h87"]
 
-[ext_resource type="Script" path="res://gameObjects/throwables/level1/scripts.gd" id="1_cyf13"]
+[ext_resource type="Script" path="res://gameObjects/throwables/scripts/scripts.gd" id="1_cyf13"]
 [ext_resource type="Texture2D" uid="uid://8dp270g0i7nv" path="res://gameObjects/throwables/assets/tempBottle.png" id="2_qqpwf"]
 [ext_resource type="Script" path="res://gameObjects/throwables/scripts/RigidBody.gd" id="3_6muqk"]
 
@@ -13,7 +13,6 @@ size = Vector2(3.6, 11.3)
 script = ExtResource("1_cyf13")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
-mass = 23.52
 physics_material_override = SubResource("PhysicsMaterial_l88ii")
 freeze_mode = 1
 script = ExtResource("3_6muqk")

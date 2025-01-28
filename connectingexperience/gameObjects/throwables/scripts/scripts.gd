@@ -12,3 +12,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#we want to check if we were clicked by the user. 
 	pass
+	
+func throw(d1, d2):
+	rigidBody.throw(d1,d2)

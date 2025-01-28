@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 func spawnBottle():
 	#calculate a starting point for the bottle
 	#for now lets just do it from the bottom
+	var screenCenter = get_viewport().get_visible_rect().size / 2
 	if maxBottles > 0:
 		var sideVal = sides[randi_range(0,2)]
 		match sideVal:
@@ -49,6 +50,9 @@ func spawnBottle():
 				var bottleInst = tempBottle.instantiate()
 				bottles.add_child(bottleInst)
 				bottleInst.global_position = center
+				
+				var centerDir  = screenCenter - bottleInst.global_position
+				bottleInst.throw(centerDir , 1000)
 			var x when x == "left":
 				print("going from left")
 				var center = viewportSize/2.0
@@ -62,6 +66,9 @@ func spawnBottle():
 				var bottleInst = tempBottle.instantiate()
 				bottles.add_child(bottleInst)
 				bottleInst.global_position = center
+				var centerDir  = screenCenter - bottleInst.global_position
+				
+				bottleInst.throw(centerDir , 1000)
 			var x when x == "right":
 				print("going from right")
 				var center = viewportSize/2.0
@@ -75,6 +82,9 @@ func spawnBottle():
 				var bottleInst = tempBottle.instantiate()
 				bottles.add_child(bottleInst)
 				bottleInst.global_position = center
+				var centerDir = screenCenter - bottleInst.global_position
+				
+				bottleInst.throw(centerDir , 1000)
 		maxBottles -= 1
 			
 
