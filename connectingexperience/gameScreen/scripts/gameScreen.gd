@@ -32,10 +32,10 @@ func spawnBottle():
 	#calculate a starting point for the bottle
 	#for now lets just do it from the bottom
 	if maxBottles > 0:
-		var sideVal = sides[0]
+		var sideVal = sides[randi_range(0,2)]
 		match sideVal:
 			var x when x == "bottom":
-				print("making it here")
+				print("going from bottom")
 				#we want to spawn from the bottom of the screen, meaning we have to generate a value
 				#randomly within those fields, y does not chaneg, x does'
 				var center = viewportSize/2.0
@@ -45,6 +45,32 @@ func spawnBottle():
 				var minX = -center.x + center.x
 				var maxX = center.x + center.x
 				center.x = randi_range(minX, maxX)
+				#lets just spawn it at the center for now
+				var bottleInst = tempBottle.instantiate()
+				bottles.add_child(bottleInst)
+				bottleInst.global_position = center
+			var x when x == "left":
+				print("going from left")
+				var center = viewportSize/2.0
+				#want to make it so the y is at the bottom
+				center.x = viewportSize.x - viewportSize.x
+				#we want to randomize the x
+				var minY = -center.y + center.y
+				var maxY = center.y + center.y
+				center.y = randi_range(minY, maxY)
+				#lets just spawn it at the center for now
+				var bottleInst = tempBottle.instantiate()
+				bottles.add_child(bottleInst)
+				bottleInst.global_position = center
+			var x when x == "right":
+				print("going from right")
+				var center = viewportSize/2.0
+				#want to make it so the y is at the bottom
+				center.x = center.x + center.x
+				#we want to randomize the x
+				var minY = -center.y + center.y
+				var maxY = center.y + center.y
+				center.y = randi_range(minY, maxY)
 				#lets just spawn it at the center for now
 				var bottleInst = tempBottle.instantiate()
 				bottles.add_child(bottleInst)
