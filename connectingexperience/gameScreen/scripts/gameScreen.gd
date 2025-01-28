@@ -39,6 +39,12 @@ func spawnBottle():
 				#we want to spawn from the bottom of the screen, meaning we have to generate a value
 				#randomly within those fields, y does not chaneg, x does'
 				var center = viewportSize/2.0
+				#want to make it so the y is at the bottom
+				center.y = viewportSize.y
+				#we want to randomize the x
+				var minX = -center.x + center.x
+				var maxX = center.x + center.x
+				center.x = randi_range(minX, maxX)
 				#lets just spawn it at the center for now
 				var bottleInst = tempBottle.instantiate()
 				bottles.add_child(bottleInst)
