@@ -1,7 +1,5 @@
-extends Node2D
+extends RigidBody2D
 
-var gravity = 1
-@onready var rigidBody = $RigidBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +7,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	#we want to check if we were clicked by the user. 
+func _physics_process(delta: float) -> void:
 	pass
