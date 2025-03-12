@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://btrjrfpcevvru"]
+
+[ext_resource type="Script" path="res://gameObjects/throwables/scripts/bomb.gd" id="1_jgdd0"]
+[ext_resource type="PackedScene" uid="uid://bsti3ppxt6h87" path="res://gameObjects/throwables/level1/bottle.tscn" id="2_qsbmu"]
+
+[node name="Bomb" type="Node2D"]
+script = ExtResource("1_jgdd0")
+
+[node name="Bottle" parent="." instance=ExtResource("2_qsbmu")]

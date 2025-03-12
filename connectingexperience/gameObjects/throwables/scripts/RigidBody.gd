@@ -8,8 +8,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	var rotateVal =randf_range(0,1)
-	self.apply_impulse(Vector2(0,-5).rotated(rotateVal), Vector2(0,15))
 	pass
 
 

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://clvidi8ilnffd"]
+
+[node name="GameOver" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 468.0
+offset_top = 295.0
+offset_right = 747.0
+offset_bottom = 353.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Game Over"
