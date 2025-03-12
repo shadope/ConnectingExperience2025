@@ -6,6 +6,7 @@ extends Node2D
 func _ready() -> void:
 	bottle.changeSprite(load("res://gameObjects/throwables/assets/droppable.png"))
 	bottle.changeType(Globals.BottleType.DROP)
+	#bottle.addAirRes(0.7)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

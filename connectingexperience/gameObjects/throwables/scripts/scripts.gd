@@ -29,7 +29,7 @@ func throw(d1, d2):
 func _onInputEvent(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("click"):
 		print("click regersteri")
-		if currentBottle == Globals.BottleType.SHATTER:
+		if currentBottle == Globals.BottleType.SHATTER or currentBottle == Globals.BottleType.DROP:
 			get_tree().current_scene.bottleHit(self)
 		if currentBottle == Globals.BottleType.BOMB:
 			print("hitting bomb")
@@ -47,3 +47,7 @@ func changeType(newType):
 	if newType == Globals.BottleType.DROP:
 		sprite.rotation_degrees = 180
 		sprite.scale = Vector2(0.234, 0.208)
+
+func addAirRes(newVal) -> void:
+	rigidBody.linear_damp = newVal
+	

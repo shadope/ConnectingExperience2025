@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://br02itwpdod8y"]
+[gd_scene load_steps=10 format=3 uid="uid://br02itwpdod8y"]
 
 [ext_resource type="Script" path="res://gameScreen/scripts/gameScreen.gd" id="1_k3egy"]
 [ext_resource type="PackedScene" uid="uid://bsti3ppxt6h87" path="res://gameObjects/throwables/level1/bottle.tscn" id="2_sds7d"]
 [ext_resource type="Script" path="res://gameScreen/scripts/timer.gd" id="3_hkk0n"]
 [ext_resource type="PackedScene" uid="uid://btrjrfpcevvru" path="res://gameObjects/throwables/level1/bomb.tscn" id="3_rovha"]
+[ext_resource type="PackedScene" uid="uid://nnsm0uxxam2s" path="res://gameObjects/throwables/level1/droppable.tscn" id="4_coch4"]
 [ext_resource type="PackedScene" uid="uid://clvidi8ilnffd" path="res://gameScreen/gameOver.tscn" id="4_pjdvv"]
 [ext_resource type="PackedScene" uid="uid://2et6a6mxsmjh" path="res://gameScreen/healthUI.tscn" id="5_52rcu"]
 [ext_resource type="PackedScene" uid="uid://yihf0v7ig6m7" path="res://gameScreen/gameWin.tscn" id="5_diml0"]
@@ -13,6 +14,7 @@
 script = ExtResource("1_k3egy")
 tempBottle = ExtResource("2_sds7d")
 bomb = ExtResource("3_rovha")
+droppable = ExtResource("4_coch4")
 gameOverScreen = ExtResource("4_pjdvv")
 gameWinScreen = ExtResource("5_diml0")
 
