@@ -13,7 +13,9 @@ size = Vector2(2.7, 3.88)
 script = ExtResource("1_cyf13")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
+mass = 0.024
 physics_material_override = SubResource("PhysicsMaterial_l88ii")
+inertia = 1.71
 freeze_mode = 1
 script = ExtResource("3_6muqk")
 

@@ -34,6 +34,8 @@ func _onInputEvent(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		if currentBottle == Globals.BottleType.BOMB:
 			print("hitting bomb")
 			get_tree().current_scene.bombHit(self.get_parent())
+		if currentBottle == Globals.BottleType.DROP:
+			get_tree().current_scene.bottleHit(self.get_parent())
 	#explode later lol
 	
 func changeSprite(newSprite):
@@ -47,3 +49,6 @@ func changeType(newType):
 	if newType == Globals.BottleType.DROP:
 		sprite.rotation_degrees = 180
 		sprite.scale = Vector2(0.234, 0.208)
+		
+func addFriction(val):
+	rigidBody.linear_damp = val

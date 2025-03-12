@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://nnsm0uxxam2s"]
+[gd_scene load_steps=3 format=3 uid="uid://nnsm0uxxam2s"]
+
+[ext_resource type="Script" path="res://gameObjects/throwables/scripts/droppable.gd" id="1_ypfou"]
+[ext_resource type="PackedScene" uid="uid://bsti3ppxt6h87" path="res://gameObjects/throwables/level1/bottle.tscn" id="2_nr84c"]
 
 [node name="Droppable" type="Node2D"]
+script = ExtResource("1_ypfou")
+
+[node name="Bottle" parent="." instance=ExtResource("2_nr84c")]
