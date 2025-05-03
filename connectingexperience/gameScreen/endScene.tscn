@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn44cw2wh1m8b"]
+
+[ext_resource type="Script" path="res://gameScreen/scripts/endeScene.gd" id="1_tcqb3"]
+
+[node name="EndScene" type="Node2D"]
+script = ExtResource("1_tcqb3")

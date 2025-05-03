@@ -1,0 +1,65 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"_translation_id": "",
+"color": Color(1, 1, 1, 1),
+"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": ""
+},
+"default_portrait": "normal",
+"description": "",
+"display_name": "bergamot",
+"mirror": false,
+"nicknames": ["burger"],
+"offset": Vector2(0, 0),
+"portraits": {
+"crazy": {
+"export_overrides": {
+"image": "\"res://characters/assets/beurgamont/craxyHappy.webp\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"happy": {
+"export_overrides": {
+"image": "\"res://characters/assets/beurgamont/happy.webp\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"normal": {
+"export_overrides": {
+"image": "\"res://characters/assets/beurgamont/neutral.webp\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"unhappy": {
+"export_overrides": {
+"image": "\"res://characters/assets/beurgamont/unhappy.webp\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"unsure": {
+"export_overrides": {
+"image": "\"res://characters/assets/beurgamont/unsure.webp\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
+"scale": 1.0
+}

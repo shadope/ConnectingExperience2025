@@ -1,0 +1,11 @@
+[background arg="res://timelines/assets/backgrounds/powerLine.webp" fade="0.0"]
+join bernice (normal) left
+bernice: hi witch - we will have more dialogue later
+leave bernice
+join witch (Normal) center
+witch: Hi bernice, this is my default fice
+witch (bloodyMouth): This is my slightly deranged face
+witch (bloodyMouthEyes): this is even more deranged
+witch (dead): and this what ill look life after you defeat me
+[signal arg="ended"]
+[end_timeline]

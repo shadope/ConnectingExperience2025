@@ -1,0 +1,17 @@
+[background arg="res://timelines/assets/backgrounds/canyon.webp" fade="0.0"]
+[music path="res://sounds/talkingSceneAmbience/windcanyon.wav" fade="0.0" volume="0.0"]
+join bernice (normal) left
+bernice (normal): I am outside canyon - there will be more dialogue here later
+[background arg="res://timelines/assets/backgrounds/cave.webp" fade="0.3"]
+bernice (normal): now I am in cave
+[music path="res://sounds/talkingSceneAmbience/caveAmbience.wav" fade="0.0" volume="-1.3"]
+[sound path="res://sounds/talkingSceneAmbience/creepyCaveSounds.wav" volume="-20.0"]
+leave bernice
+join vamp (normal) left
+vamp (normal): dasdjahldckjblw....
+vamp (scary): ......
+leave vamp
+join bernice (angry) left
+bernice (angry): aaaaaa!!!
+[signal arg="ended"]
+[end_timeline]

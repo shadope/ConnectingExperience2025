@@ -1,0 +1,9 @@
+[background arg="res://timelines/assets/backgrounds/churchNight.png" fade="0.0"]
+[music path="res://sounds/talkingSceneAmbience/endAmbience.wav" fade="0.0" volume="0.0"]
+join bernice left
+bernice: I am at the end of the game now
+leave bernice
+join bergamot left
+bergamot (happy): And I am the one you will talk too at the end!
+[signal arg="ended"]
+[end_timeline]

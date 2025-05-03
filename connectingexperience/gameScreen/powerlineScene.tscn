@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mqi7722rslud"]
+
+[ext_resource type="Script" path="res://gameScreen/scripts/powerlineScene.gd" id="1_06kgg"]
+
+[node name="PowerlineScene" type="Node2D"]
+script = ExtResource("1_06kgg")

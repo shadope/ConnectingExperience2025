@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://br02itwpdod8y"]
+[gd_scene load_steps=13 format=3 uid="uid://wravdo6ampak"]
 
 [ext_resource type="Script" path="res://gameScreen/scripts/gameScreen.gd" id="1_k3egy"]
 [ext_resource type="PackedScene" uid="uid://bsti3ppxt6h87" path="res://gameObjects/throwables/level1/bottle.tscn" id="2_sds7d"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://2et6a6mxsmjh" path="res://gameScreen/healthUI.tscn" id="5_52rcu"]
 [ext_resource type="PackedScene" uid="uid://yihf0v7ig6m7" path="res://gameScreen/gameWin.tscn" id="5_diml0"]
 [ext_resource type="PackedScene" uid="uid://bxvm8mx0lx7br" path="res://gameScreen/progressBar.tscn" id="7_cx0u0"]
+[ext_resource type="Texture2D" uid="uid://b33t8x6qqswx0" path="res://gameScreen/assets/s1Background.png" id="8_5kb54"]
+[ext_resource type="Texture2D" uid="uid://irblhdhe1akw" path="res://gameScreen/assets/screenParts/mouseGraphic.webp" id="11_b48ku"]
+[ext_resource type="AudioStream" uid="uid://digwqsirl5q63" path="res://sounds/miscNoise/gunShot2.wav" id="12_oyjrh"]
 
 [node name="gameScreen" type="Node2D"]
 script = ExtResource("1_k3egy")
@@ -26,7 +29,23 @@ script = ExtResource("3_hkk0n")
 
 [node name="bombs" type="Node2D" parent="."]
 
-[node name="HealthUi" parent="." instance=ExtResource("5_52rcu")]
+[node name="background" type="TextureRect" parent="."]
+show_behind_parent = true
+light_mask = 2
+visibility_layer = 2
+offset_right = 1249.0
+offset_bottom = 703.0
+texture = ExtResource("8_5kb54")
 
 [node name="ProgressBar" parent="." instance=ExtResource("7_cx0u0")]
-position = Vector2(1099, 1)
+
+[node name="HealthUi" parent="." instance=ExtResource("5_52rcu")]
+
+[node name="mouseGraphic" type="Sprite2D" parent="."]
+texture = ExtResource("11_b48ku")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 10.895
+
+[node name="playerSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_oyjrh")

@@ -1,12 +1,41 @@
-[gd_scene format=3 uid="uid://yihf0v7ig6m7"]
+[gd_scene load_steps=6 format=3 uid="uid://yihf0v7ig6m7"]
+
+[ext_resource type="Script" path="res://gameScreen/scripts/gameWin.gd" id="1_4ye8s"]
+[ext_resource type="PackedScene" uid="uid://dalwgoqeclx84" path="res://gameScreen/startScene.tscn" id="2_lffu5"]
+[ext_resource type="PackedScene" uid="uid://c3wn8h33wu1a2" path="res://gameScreen/canyonCaveScene.tscn" id="3_ip6ht"]
+[ext_resource type="PackedScene" uid="uid://mqi7722rslud" path="res://gameScreen/powerlineScene.tscn" id="4_2767c"]
+[ext_resource type="PackedScene" uid="uid://cn44cw2wh1m8b" path="res://gameScreen/endScene.tscn" id="5_dint3"]
 
 [node name="GameWin" type="Node2D"]
+position = Vector2(889, 527)
+script = ExtResource("1_4ye8s")
+startScene = ExtResource("2_lffu5")
+canyonScene = ExtResource("3_ip6ht")
+powerlineScene = ExtResource("4_2767c")
+endScene = ExtResource("5_dint3")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 468.0
-offset_top = 295.0
-offset_right = 747.0
-offset_bottom = 353.0
+offset_left = -85.0
+offset_top = -101.0
+offset_right = 194.0
+offset_bottom = -43.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Success!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="continueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "continue
+"
+
+[node name="menuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "main menu
+"
+
+[connection signal="button_up" from="VBoxContainer/continueButton" to="." method="pressed"]
+[connection signal="button_up" from="VBoxContainer/menuButton" to="." method="menuPressed"]

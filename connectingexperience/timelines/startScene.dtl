@@ -1,0 +1,25 @@
+[background arg="res://timelines/assets/backgrounds/church.webp" fade="0.0"]
+[music path="res://sounds/talkingSceneAmbience/fieldSounds.wav" fade="0.0" volume="0.0"]
+join bernice (normal) left
+bernice: This is my normal face
+update bernice (confused) left
+bernice: This is my confused face
+update bernice (happy) left
+bernice: This is my happy face
+update bernice (angry) left
+bernice: This is my angry face
+update bernice (blush) left
+bernice: This is my blushing face
+leave bernice
+join bergamot (normal) left
+bergamot (normal): this is my normal face
+join bergamot (crazy) left
+bergamot (crazy): this is my happy/crazed face
+join bergamot (happy) left
+bergamot (happy): this is my happy face
+join bergamot (unhappy) left
+bergamot (unhappy): this is my unhappy face
+bergamot (unsure): this is my unsure face
+leave --All--
+[signal arg="ended"]
+[end_timeline]

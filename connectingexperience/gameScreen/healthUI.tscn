@@ -1,34 +1,39 @@
 [gd_scene load_steps=3 format=3 uid="uid://2et6a6mxsmjh"]
 
 [ext_resource type="Script" path="res://gameScreen/scripts/healthUi.gd" id="1_rl7bi"]
-[ext_resource type="Texture2D" uid="uid://c2vsiseig3w4a" path="res://gameScreen/assets/tempHealth.png" id="2_lpkqx"]
+[ext_resource type="Texture2D" uid="uid://bjthpxibrckc7" path="res://gameScreen/assets/screenParts/realBullet3.webp" id="2_qc20q"]
 
 [node name="HealthUi" type="Node2D"]
 script = ExtResource("1_rl7bi")
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 4.0
-offset_top = 530.0
-offset_right = 339.0
-offset_bottom = 646.0
+offset_left = 81.0
+offset_top = 951.0
+offset_right = 416.0
+offset_bottom = 1067.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 238.0
-offset_bottom = 111.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.641
+anchor_bottom = -0.641
+offset_left = -90.0
+offset_top = 68.356
+offset_right = 421.0
+offset_bottom = 200.356
 alignment = 1
 
 [node name="bullet1" type="TextureRect" parent="Panel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_lpkqx")
+texture = ExtResource("2_qc20q")
 expand_mode = 3
 
 [node name="bullet2" type="TextureRect" parent="Panel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_lpkqx")
+texture = ExtResource("2_qc20q")
 expand_mode = 3
 
 [node name="bullet3" type="TextureRect" parent="Panel/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_lpkqx")
+texture = ExtResource("2_qc20q")
 expand_mode = 3

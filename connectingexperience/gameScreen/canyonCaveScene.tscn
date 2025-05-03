@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3wn8h33wu1a2"]
+
+[ext_resource type="Script" path="res://gameScreen/scripts/caveCanyon.gd" id="1_3k6ea"]
+
+[node name="CanyonCaveScene" type="Node2D"]
+script = ExtResource("1_3k6ea")

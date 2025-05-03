@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsti3ppxt6h87"]
+[gd_scene load_steps=7 format=3 uid="uid://bsti3ppxt6h87"]
 
 [ext_resource type="Script" path="res://gameObjects/throwables/scripts/scripts.gd" id="1_cyf13"]
-[ext_resource type="Texture2D" uid="uid://8dp270g0i7nv" path="res://gameObjects/throwables/assets/tempBottle.png" id="2_qqpwf"]
 [ext_resource type="Script" path="res://gameObjects/throwables/scripts/RigidBody.gd" id="3_6muqk"]
+[ext_resource type="Texture2D" uid="uid://ctkb7yylc2pxw" path="res://gameScreen/assets/screenParts/bottleBasic.webp" id="3_8mgum"]
+[ext_resource type="AudioStream" uid="uid://bnbejwhgxww8a" path="res://sounds/throwableSounds/bottleExplode.wav" id="4_ie418"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l88ii"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7d8fe"]
-size = Vector2(2.7, 3.88)
+size = Vector2(3.63, 5.55)
 
 [node name="Bottle" type="Node2D"]
 script = ExtResource("1_cyf13")
@@ -24,11 +25,32 @@ scale = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_7d8fe")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
-scale = Vector2(0.042, 0.0318056)
-texture = ExtResource("2_qqpwf")
+position = Vector2(0.152008, 8.49366e-06)
+scale = Vector2(1.2, 1.106)
+texture = ExtResource("3_8mgum")
 
 [node name="Area2D" type="Area2D" parent="RigidBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
-scale = Vector2(50, 50)
+position = Vector2(-1.90735e-06, -1)
+scale = Vector2(100, 100)
 shape = SubResource("RectangleShape2D_7d8fe")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="RigidBody2D"]
+position = Vector2(0.152008, 8.49366e-06)
+scale = Vector2(1.2, 1.106)
+emitting = false
+amount = 40
+one_shot = true
+spread = 180.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 550.0
+initial_velocity_max = 600.0
+scale_amount_min = 20.0
+scale_amount_max = 20.0
+color = Color(0.291671, 0.168742, 0.0463292, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ie418")
+
+[connection signal="finished" from="RigidBody2D/CPUParticles2D" to="." method="_OnParticlesDone"]
