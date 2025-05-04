@@ -41,8 +41,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#we want to check if we were clicked by the user.
-	pass
+	var inBounds = get_tree().current_scene.returnScreenBound(self.global_position)
+	if !inBounds:
+		print("out of bounds")
+		get_tree().current_scene.emit_signal("projOOB",self)
 	
 func throw(d1, d2):
 	rigidBody.throw(d1,d2)
@@ -125,4 +127,9 @@ func setPColor():
 	print("mat color: ", mat.color)
 	particles.color = mat.color
 	particles.material = mat
+	
+func getBody() -> RigidBody2D:
+	return rigidBody
+func isVisible () -> bool:
+	return sprite.visible
 			

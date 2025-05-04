@@ -24,3 +24,9 @@ func hideSprite() -> void:
 	
 func getType() -> Globals.BottleType:
 	return Globals.BottleType.BOMB
+	
+func getBody() -> RigidBody2D:
+	return bottle.getBody()
+	
+func isVisible () -> bool:
+	return bottle.isVisible()

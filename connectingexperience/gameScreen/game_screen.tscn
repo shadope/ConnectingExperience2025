@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wravdo6ampak"]
+[gd_scene load_steps=16 format=3 uid="uid://wravdo6ampak"]
 
 [ext_resource type="Script" path="res://gameScreen/scripts/gameScreen.gd" id="1_k3egy"]
 [ext_resource type="PackedScene" uid="uid://bsti3ppxt6h87" path="res://gameObjects/throwables/level1/bottle.tscn" id="2_sds7d"]
@@ -12,6 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://b33t8x6qqswx0" path="res://gameScreen/assets/s1Background.png" id="8_5kb54"]
 [ext_resource type="Texture2D" uid="uid://irblhdhe1akw" path="res://gameScreen/assets/screenParts/mouseGraphic.webp" id="11_b48ku"]
 [ext_resource type="AudioStream" uid="uid://digwqsirl5q63" path="res://sounds/miscNoise/gunShot2.wav" id="12_oyjrh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q7yn"]
+size = Vector2(114, 3321)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lce45"]
+size = Vector2(6785, 339)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_laohn"]
+size = Vector2(6172, 178)
 
 [node name="gameScreen" type="Node2D"]
 script = ExtResource("1_k3egy")
@@ -49,3 +58,36 @@ volume_db = 10.895
 
 [node name="playerSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_oyjrh")
+
+[node name="leftSide" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leftSide"]
+position = Vector2(-1286, 775)
+shape = SubResource("RectangleShape2D_5q7yn")
+debug_color = Color(0.681177, 0.495402, 0.248642, 0.42)
+
+[node name="rightSide" type="Area2D" parent="."]
+position = Vector2(-31, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rightSide"]
+position = Vector2(3051, 864.5)
+shape = SubResource("RectangleShape2D_5q7yn")
+debug_color = Color(0.681177, 0.495402, 0.248642, 0.42)
+
+[node name="bottomSide" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottomSide"]
+position = Vector2(981.5, 2079)
+shape = SubResource("RectangleShape2D_lce45")
+
+[node name="topSide" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="topSide"]
+position = Vector2(547, -814)
+shape = SubResource("RectangleShape2D_laohn")
+
+[connection signal="area_entered" from="leftSide" to="." method="_onAreaEntered"]
+[connection signal="body_shape_entered" from="leftSide" to="." method="_onBodyAreaEntered"]
+[connection signal="body_shape_entered" from="rightSide" to="." method="_onBodyAreaEntered"]
+[connection signal="body_shape_entered" from="bottomSide" to="." method="_onBodyAreaEntered"]
+[connection signal="body_shape_entered" from="topSide" to="." method="_onBodyAreaEntered"]

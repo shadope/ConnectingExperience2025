@@ -3,6 +3,7 @@ extends Node2D
 signal gameOver
 signal gameWin
 signal playHitSound
+signal projOOB
 #packedScenes
 @export var tempBottle : PackedScene
 @export var bomb : PackedScene
@@ -29,14 +30,14 @@ signal playHitSound
 @onready var gunSight = $mouseGraphic
 @onready var audioPlayer = $AudioStreamPlayer2D
 @onready var gun = $playerSound
-@onready var particles = $CPUParticles2D
 #window is by default 1920/
 #TODO add in globals and make these a global
-var maxBottles = 10
 var sides = ["bottom", "left", "right"]
 var viewportSize
 var time = 0
 var throwImages = []
+var totBottles = 0
+@onready var maxBottles = Globals.diffMapping[Globals.curLevel]
 @onready var throwImageMap = {}
 @onready var screenCenter = get_viewport().get_visible_rect().size / 2
 
@@ -46,7 +47,6 @@ var throwImages = []
 								Globals.BottleType.BOMB : bombSound
 	
 }
-
 
 #partilce mapping
 @onready var parMapping = {}
@@ -60,8 +60,7 @@ func _ready() -> void:
 	throwImages = Globals.getThrowableImageList()
 	throwImageMap = {Globals.BottleType.SHATTER : throwImages[0], 
 					Globals.BottleType.DROP : throwImages[1],
-					Globals.BottleType.BOMB : throwImages[2]}
-	print("throw images: ", throwImages)	
+					Globals.BottleType.BOMB : throwImages[2]}	
 	viewportSize = get_viewport_rect().size
 	timer.wait_time = 2.0
 	timer.start()
@@ -69,6 +68,7 @@ func _ready() -> void:
 	gameOver.connect(_onGameOver)
 	gameWin.connect(_onGameWin)
 	playHitSound.connect(_onPlayHitSound)
+	projOOB.connect(_onProjOOB)
 	
 	#make particl colors
 	parMapping[[Globals.levels.START, Globals.BottleType.SHATTER]] = make_gradient(Color(0.38, 0.24, 0.12), Color(0.53, 0.81, 0.98))
@@ -85,7 +85,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	gunSight.global_position = get_viewport().get_mouse_position()
 	if Input.is_action_pressed("click") and gun.playing == false:
-		print("gun shot")
 		gun.play()
 		
 	#what we want to do is spawn bottles randomly from the top 3 sides
@@ -96,26 +95,19 @@ func spawnBottle():
 	var screenCenter = get_viewport().get_visible_rect().size / 2
 	var sideVal = sides[randi_range(0,2)]
 	var proj = chooseProjectile()
-	
-	
+	totBottles+=1
 	if proj != droppable:
 		spawnProj(proj)
 	else:
 		spawnDrop(proj)
 
 				
-
-			
-
 func spawnProj(proj) -> void:
 	var sideVal = sides[randi_range(0,2)]
 	var center = viewportSize/2.0
 	var bottleInst
 	match sideVal:
 		var x when x == "bottom":
-			#we want to spawn from the bottom of the screen, meaning we have to generate a value
-			#randomly within those fields, y does not chaneg, x does'
-			#want to make it so the y is at the bottom
 			center.y = viewportSize.y
 			#we want to randomize the x
 			var minX = -center.x + center.x
@@ -147,18 +139,30 @@ func spawnProj(proj) -> void:
 
 			
 func spawnDrop(proj) -> void:
-	var screenCenter = get_viewport().get_visible_rect().size / 2
-	var center = viewportSize/2.0
-	#want to make it so the y is at the bottom
-	center.y = -viewportSize.y
-	#we want to randomize the x
-	var minX = -center.x + center.x
-	var maxX = center.x + center.x
-	center.x = randi_range(minX, maxX)
-	var dropInst = proj.instantiate()
-	#set to current image
-	bottles.add_child(dropInst)
-	dropInst.global_position = center
+	#var screenCenter = get_viewport().get_visible_rect().size / 2
+	#var center = viewportSize/2.0
+	##want to make it so the y is at the bottom
+	#center.y = -viewportSize.y
+	##we want to randomize the x
+	#var minX = -center.x + center.x
+	#var maxX = center.x + center.x
+	#center.x = randi_range(minX, maxX)
+	#var dropInst = proj.instantiate()
+	##set to current image
+	#bottles.add_child(dropInst)
+	#dropInst.global_position = center
+	var viewport_size = get_viewport().get_visible_rect().size
+
+	# Random X across the full screen width
+	var x_pos = randf_range(0, viewport_size.x)
+
+	# Y position at the top of the screen (just above view if you want it to drop in)
+	var y_pos = -50  # or -50 to spawn slightly offscreen
+
+	var drop_inst = proj.instantiate()
+	bottles.add_child(drop_inst)
+	drop_inst.global_position = Vector2(x_pos, y_pos)
+
 	
 			
 
@@ -179,6 +183,7 @@ func bottleHit(bot) -> void:
 			print("in delete")
 			bar.emit_signal("addProgress")
 			bottle.hideSprite()
+			totBottles-=1
 			#bottle.queue_free()
 			
 func bombHit(bom) -> void:
@@ -222,5 +227,40 @@ func getGradientMapping(bottleType):
 	print("type: ", bottleType, "lvel: ", Globals.curLevel)
 	print("mapping: ", parMapping)
 	return parMapping[[Globals.curLevel, bottleType]]
+	
+func returnScreenBound(projCoords) -> bool:
+	var screen_size = get_viewport().size
+	var screen_rect = Rect2(Vector2(0, 0), screen_size)
+	screen_rect = screen_rect.grow(20.0)
+	return screen_rect.has_point(projCoords)
+	
+func _onProjOOB(projectile) -> void:
+	# hittable projectable has gone out of bounds, delete bullet
+	print("outside of loop in on proj oob")
+	for proj in bottles.get_children():
+		if proj == projectile:
+			#Delete
+			print("in delete, OOB")
+			healthUI.emit_signal("damageTaken")
+			proj.queue_free()
+			totBottles-=1
 			
 			
+
+
+func _onAreaEntered(area: Area2D) -> void:
+	pass # Replace with function body.
+
+
+func _onBodyAreaEntered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	print("hi")
+	
+	for proj in bottles.get_children():
+		print("proj, ", proj.getBody(), " body, ", body)
+		if proj.getBody() == body and proj.isVisible() and proj.getType() != Globals.BottleType.BOMB:
+			#Delete
+			healthUI.emit_signal("damageTaken")
+			proj.queue_free()
+			totBottles-=1
+		elif proj.getType() == Globals.BottleType.BOMB and proj.isVisible():
+			proj.queue_free()
