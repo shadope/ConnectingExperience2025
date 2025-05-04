@@ -4,6 +4,8 @@ signal gameOver
 signal gameWin
 signal playHitSound
 signal projOOB
+#preload area
+@onready var whiteGun = preload("res://gameScreen/assets/screenParts/whiteGun.png")
 #packedScenes
 @export var tempBottle : PackedScene
 @export var bomb : PackedScene
@@ -24,8 +26,8 @@ signal projOOB
 @onready var timer = $Timer
 @onready var bottles = $bottles
 @onready var bombs = $bombs
-@onready var healthUI = $HealthUi
-@onready var bar = $ProgressBar
+@onready var healthUI = $UI/HealthUi
+@onready var bar = $Control/ProgressBar
 @onready var background = $background
 @onready var gunSight = $mouseGraphic
 @onready var audioPlayer = $AudioStreamPlayer2D
@@ -87,6 +89,14 @@ func _ready() -> void:
 	parMapping[[Globals.levels.POWERLINE, Globals.BottleType.SHATTER]] = make_gradient(Color(1.0, 0.75, 0.0), Color(0.4, 0.0, 0.0))
 	parMapping[[Globals.levels.POWERLINE, Globals.BottleType.DROP]]    = make_gradient(Color(0.8, 0.0, 0.0),   Color(0.4, 0.0, 0.0))
 	parMapping[[Globals.levels.POWERLINE, Globals.BottleType.BOMB]]    = make_gradient(Color(1.0, 0.0, 0.0),   Color(0.4, 0.0, 0.0))
+	
+	#set gun sight
+	if Globals.curLevel == Globals.levels.CAVE or Globals.curLevel == Globals.levels.POWERLINE:
+		gunSight.texture = whiteGun
+	
+	#set power bar textures
+	var barArray = Globals.barImageMap[Globals.curLevel]
+	bar.setBase(barArray[0], barArray[1])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,18 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxvm8mx0lx7br"]
 
 [ext_resource type="Script" path="res://gameScreen/scripts/progressBar.gd" id="1_628l7"]
-[ext_resource type="Texture2D" uid="uid://cp4bxcsdwqa0l" path="res://gameScreen/assets/screenParts/progressDefault.webp" id="2_2e47e"]
+[ext_resource type="Texture2D" uid="uid://bekb5ivo5n5qy" path="res://gameScreen/assets/screenParts/startBarbase.png" id="2_57ymj"]
 [ext_resource type="Texture2D" uid="uid://h81yl07m27oh" path="res://gameScreen/assets/screenParts/progressGrow.webp" id="3_c7206"]
 
 [node name="ProgressBar" type="Node2D"]
 script = ExtResource("1_628l7")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = 1267.0
+offset_left = 1672.0
 offset_top = 32.0
-offset_right = 1914.0
+offset_right = 2095.0
 offset_bottom = 1031.0
+mouse_filter = 2
 fill_mode = 3
 nine_patch_stretch = true
-texture_under = ExtResource("2_2e47e")
+texture_under = ExtResource("2_57ymj")
 texture_progress = ExtResource("3_c7206")

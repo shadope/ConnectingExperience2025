@@ -26,3 +26,8 @@ func _onAddProgress() -> void:
 	bar.value += 1
 	if bar.value >= bar.max_value:
 		get_tree().current_scene.emit_signal("gameWin")
+
+func setBase(base, load) -> void:
+	bar.texture_under = base
+	bar.texture_progress = load
+	

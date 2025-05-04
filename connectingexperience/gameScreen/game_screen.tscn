@@ -42,22 +42,20 @@ script = ExtResource("3_hkk0n")
 show_behind_parent = true
 light_mask = 2
 visibility_layer = 2
+z_index = -2
 offset_right = 1249.0
 offset_bottom = 703.0
 texture = ExtResource("8_5kb54")
 
-[node name="ProgressBar" parent="." instance=ExtResource("7_cx0u0")]
-
-[node name="HealthUi" parent="." instance=ExtResource("5_52rcu")]
-
 [node name="mouseGraphic" type="Sprite2D" parent="."]
 texture = ExtResource("11_b48ku")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." groups=["gameMusic"]]
 volume_db = 10.895
 
-[node name="playerSound" type="AudioStreamPlayer2D" parent="."]
+[node name="playerSound" type="AudioStreamPlayer2D" parent="." groups=["projectableSound"]]
 stream = ExtResource("12_oyjrh")
+bus = &"projSound"
 
 [node name="leftSide" type="Area2D" parent="."]
 
@@ -85,6 +83,19 @@ shape = SubResource("RectangleShape2D_lce45")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="topSide"]
 position = Vector2(547, -814)
 shape = SubResource("RectangleShape2D_laohn")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HealthUi" parent="UI" instance=ExtResource("5_52rcu")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" parent="Control" instance=ExtResource("7_cx0u0")]
+z_index = -1
 
 [connection signal="area_entered" from="leftSide" to="." method="_onAreaEntered"]
 [connection signal="body_shape_entered" from="leftSide" to="." method="_onBodyAreaEntered"]

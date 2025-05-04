@@ -21,6 +21,21 @@ extends Node
 @onready var lev3Droppable = preload("res://gameObjects/throwables/assets/Lizard.png")
 @onready var lev3Bomb = preload("res://gameObjects/throwables/assets/bomb.png")
 
+#level 1 bar over/under
+@onready var lev1BarBase = preload("res://gameScreen/assets/screenParts/startBarbase.png")
+@onready var lev1BarLoad = preload("res://gameScreen/assets/screenParts/level2BarBase.png")
+#level 2 bar over/under
+@onready var lev2BarBase = preload("res://gameScreen/assets/screenParts/level2BarBase.png")
+@onready var lev2BarLoad = preload("res://gameScreen/assets/screenParts/caveBarBase.png")
+#level 3 bar over/under
+@onready var lev3BarBase = preload("res://gameScreen/assets/screenParts/caveBarBase.png")
+@onready var lev3BarLoad = preload("res://gameScreen/assets/screenParts/powerlineBarBase.png")
+
+#bar maps
+@onready var barImageMap = { levels.START : [lev1BarBase, lev1BarLoad],
+					levels.CAVE : [lev2BarBase, lev2BarLoad],
+					levels.POWERLINE : [lev3BarBase, lev3BarLoad]
+}
 
 #TODO make sound mappings
 
@@ -70,4 +85,4 @@ func changeDif() -> void:
 			barMapping = {levels.START : 10, levels.CAVE : 20, levels.POWERLINE : 30}
 		diff.HARD:
 			diffMapping = {levels.START : 2, levels.CAVE : 3, levels.POWERLINE : 4}
-			barMapping = {levels.START : 10, levels.CAVE : 30, levels.POWERLINE : 40}
+			barMapping = {levels.START : 20, levels.CAVE : 30, levels.POWERLINE : 40}

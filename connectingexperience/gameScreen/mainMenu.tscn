@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bpqylnd651gs"]
+[gd_scene load_steps=13 format=3 uid="uid://bpqylnd651gs"]
 
 [ext_resource type="Script" path="res://gameScreen/scripts/mainMenu.gd" id="1_bebl0"]
 [ext_resource type="Texture2D" uid="uid://bwd0b1ibetacd" path="res://gameScreen/assets/mainMenu.png" id="2_5an6o"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://irblhdhe1akw" path="res://gameScreen/assets/screenParts/mouseGraphic.webp" id="8_xwmm1"]
 [ext_resource type="AudioStream" uid="uid://bddxt0wosg3ug" path="res://sounds/miscNoise/mainMenu.wav" id="9_7isn6"]
 [ext_resource type="AudioStream" uid="uid://digwqsirl5q63" path="res://sounds/miscNoise/gunShot2.wav" id="10_do5xy"]
+[ext_resource type="Texture2D" uid="uid://dsilwr08n5k43" path="res://gameScreen/assets/screenParts/creditsUnpressed.png" id="11_s6dcm"]
+[ext_resource type="Texture2D" uid="uid://bdtp4llnv0dy4" path="res://gameScreen/assets/screenParts/creditsPressed.png" id="12_xqwdm"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_bebl0")
@@ -50,6 +52,18 @@ stream = ExtResource("9_7isn6")
 
 [node name="gun" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_do5xy")
+bus = &"projSound"
+
+[node name="creditButton" type="TextureButton" parent="."]
+offset_left = 758.0
+offset_top = 689.0
+offset_right = 1110.0
+offset_bottom = 769.0
+texture_normal = ExtResource("11_s6dcm")
+texture_hover = ExtResource("12_xqwdm")
+ignore_texture_size = true
+stretch_mode = 3
 
 [connection signal="button_up" from="playButton" to="." method="_onPlayButtonUp"]
 [connection signal="button_up" from="settingsButton" to="." method="_onSettingsButtonUp"]
+[connection signal="button_up" from="creditButton" to="." method="_onCreditButtonUp"]

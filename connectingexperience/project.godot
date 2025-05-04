@@ -48,6 +48,11 @@ window/size/viewport_height=1080
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
+[global_group]
+
+projectableSound=""
+gameMusic=""
+
 [input]
 
 click={

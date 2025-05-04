@@ -2,8 +2,8 @@ extends Node2D
 
 var sound = AudioServer.get_bus_index("Master")
 var busIndex
-@onready var groupPair = { $sliders/gameSlider : "game",
-	$sliders/musicSlider : "music"
+@onready var groupPair = { $sliders/gameSlider : "projSound",
+	$sliders/musicSlider : "Master"
 }
 
 @onready var easyCheck = $HBoxContainer/Easy
@@ -41,19 +41,20 @@ func buttonUp() -> void:
 	mediumCheck.button_pressed = false
 	hardCheck.button_pressed = false
 	Globals.curDiff = Globals.diff.EASY
+	Globals.changeDif()
 	
 
 func mediumButtonUp() -> void:
 	easyCheck.button_pressed = false
 	hardCheck.button_pressed = false
 	Globals.curDiff = Globals.diff.MED
-
+	Globals.changeDif()
 
 func hardButtonUp() -> void:
 	easyCheck.button_pressed = false
 	mediumCheck.button_pressed = false
 	Globals.curDiff = Globals.diff.HARD
-	
+	Globals.changeDif()
 
 
 func _onBackButtonUP() -> void:

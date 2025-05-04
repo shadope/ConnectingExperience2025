@@ -27,3 +27,7 @@ func _onPlayButtonUp() -> void:
 
 func _onSettingsButtonUp() -> void:
 	get_tree().change_scene_to_file("res://gameScreen/settings.tscn")
+
+
+func _onCreditButtonUp() -> void:
+	get_tree().change_scene_to_file("res://gameScreen/credits.tscn")
