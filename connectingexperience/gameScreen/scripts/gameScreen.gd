@@ -38,6 +38,7 @@ var time = 0
 var throwImages = []
 var totBottles = 0
 var spawnDelta = 0.0
+var lastBombSide = ""
 @onready var maxBottles = Globals.diffMapping[Globals.curLevel]
 @onready var throwImageMap = {}
 @onready var screenCenter = get_viewport().get_visible_rect().size / 2
@@ -115,9 +116,15 @@ func spawnBottle():
 
 				
 func spawnProj(proj) -> void:
+	
 	var sideVal = sides[randi_range(0,2)]
+	while sideVal == lastBombSide:
+		print(" side val: ", sideVal, " lastBombSide: ", lastBombSide)
+		sideVal = sides[randi_range(0,2)]
 	var center = viewportSize/2.0
 	var bottleInst
+	
+	lastBombSide = sideVal
 	match sideVal:
 		var x when x == "bottom":
 			center.y = viewportSize.y

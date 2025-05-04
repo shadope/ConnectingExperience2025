@@ -35,7 +35,7 @@ var curLevel = levels.START
 							   levels.CAVE : [lev2Bottle, lev2Droppable, lev2Bomb],
 							   levels.POWERLINE : [lev3Bottle, lev3Droppable, lev3Bomb]
 }
-@onready var diffMapping = {levels.START : 4, levels.CAVE : 3, levels.POWERLINE : 4}
+@onready var diffMapping = {levels.START : 1, levels.CAVE : 2, levels.POWERLINE : 3}
 @onready var barMapping = {levels.START : 10, levels.CAVE : 30, levels.POWERLINE : 40}
 
 #scene packs aya

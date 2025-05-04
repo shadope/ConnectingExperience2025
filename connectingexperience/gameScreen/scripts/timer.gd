@@ -11,4 +11,5 @@ func _process(delta: float) -> void:
 	pass
 	
 func _onSpawnBottle():
-	get_parent().spawnBottle()
+	if get_parent().totBottles < get_parent().maxBottles:
+		get_parent().spawnBottle()
