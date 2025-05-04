@@ -42,11 +42,15 @@ scale = Vector2(1.2, 1.106)
 emitting = false
 amount = 40
 one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
 spread = 180.0
-gravity = Vector2(0, 500)
+gravity = Vector2(0, 1000)
 initial_velocity_min = 550.0
 initial_velocity_max = 600.0
-scale_amount_min = 20.0
+scale_amount_min = 15.0
 scale_amount_max = 20.0
 color = Color(0.291671, 0.168742, 0.0463292, 1)
 

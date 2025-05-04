@@ -48,6 +48,10 @@ var throwImages = []
 }
 
 
+#partilce mapping
+@onready var parMapping = {}
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#TODO set the sprites here lol 
@@ -65,6 +69,17 @@ func _ready() -> void:
 	gameOver.connect(_onGameOver)
 	gameWin.connect(_onGameWin)
 	playHitSound.connect(_onPlayHitSound)
+	
+	#make particl colors
+	parMapping[[Globals.levels.START, Globals.BottleType.SHATTER]] = make_gradient(Color(0.38, 0.24, 0.12), Color(0.53, 0.81, 0.98))
+	parMapping[[Globals.levels.START, Globals.BottleType.DROP]]    = make_gradient(Color(0.55, 0.05, 0.05), Color(0.53, 0.81, 0.98))
+	parMapping[[Globals.levels.START, Globals.BottleType.BOMB]]    = make_gradient(Color(1.0, 0.0, 0.0),     Color(0.53, 0.81, 0.98))
+	parMapping[[Globals.levels.CAVE,  Globals.BottleType.SHATTER]] = make_gradient(Color(0.8, 0.8, 0.8),     Color(0.2, 0.2, 0.2))
+	parMapping[[Globals.levels.CAVE,  Globals.BottleType.DROP]]    = make_gradient(Color(0.2, 0.3, 0.4),     Color(0.2, 0.2, 0.2))
+	parMapping[[Globals.levels.CAVE,  Globals.BottleType.BOMB]]    = make_gradient(Color(1.0, 0.0, 0.0),     Color(0.2, 0.2, 0.2))
+	parMapping[[Globals.levels.POWERLINE, Globals.BottleType.SHATTER]] = make_gradient(Color(1.0, 0.75, 0.0), Color(0.4, 0.0, 0.0))
+	parMapping[[Globals.levels.POWERLINE, Globals.BottleType.DROP]]    = make_gradient(Color(0.8, 0.0, 0.0),   Color(0.4, 0.0, 0.0))
+	parMapping[[Globals.levels.POWERLINE, Globals.BottleType.BOMB]]    = make_gradient(Color(1.0, 0.0, 0.0),   Color(0.4, 0.0, 0.0))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -211,6 +226,14 @@ func deleteProj(projectile):
 		if proj == projectile:
 			proj.queue_free()
 	
+func make_gradient(color1: Color, color2: Color) -> ParticleProcessMaterial:
+	var mat := ParticleProcessMaterial.new()
+	mat.color = color1
+	return mat
 	
+func getGradientMapping(bottleType):
+	print("type: ", bottleType, "lvel: ", Globals.curLevel)
+	print("mapping: ", parMapping)
+	return parMapping[[Globals.curLevel, bottleType]]
 			
 			

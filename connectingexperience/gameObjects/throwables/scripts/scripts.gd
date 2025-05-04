@@ -83,7 +83,9 @@ func changeType(newType):
 	var tempSprite = Sprite2D.new()
 	tempSprite.texture = throwImageMap[currentBottle]
 	changeSprite(tempSprite)
+	setPColor()
 	if newType == Globals.BottleType.DROP:
+		#maybe dont do this in level 3
 		sprite.rotation_degrees = 180
 		#sprite.scale = Vector2(0.234, 0.208)
 		
@@ -115,3 +117,24 @@ func hideSprite() -> void:
 
 func _OnParticlesDone() -> void:
 	get_tree().current_scene.deleteProj(get_parent())
+	
+func setPColor():
+	
+	print("setting p color")
+	var mat = get_tree().current_scene.getGradientMapping(currentBottle)
+	print("mat color: ", mat.color)
+	particles.color = mat.color
+	#if mat.color_ramp and mat.color_ramp.gradient:
+		#var grad = mat.color_ramp.gradient
+		#var points = grad.get_point_count()
+		#
+		#if points >= 2:
+			#var color1 = grad.get_color(0)
+			#var color2 = grad.get_color(points - 1)
+			#print("Gradient Colors -> Start: ", color1, ", End: ", color2)
+		#else:
+			#print("Gradient has fewer than 2 color points.")
+	#else:
+		#print("No gradient ramp found in material.")
+	particles.material = mat
+			
