@@ -56,6 +56,7 @@ var spawnDelta = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#TODO set the sprites here lol 
+	totBottles = 0
 	background.texture = Globals.getBackground()
 	#set throwable images
 	throwImages = Globals.getThrowableImageList()
@@ -106,6 +107,7 @@ func spawnBottle():
 	var sideVal = sides[randi_range(0,2)]
 	var proj = chooseProjectile()
 	totBottles+=1
+	print("spawning proj! ", totBottles)
 	if proj != droppable:
 		spawnProj(proj)
 	else:
@@ -144,23 +146,10 @@ func spawnProj(proj) -> void:
 	bottles.add_child(bottleInst)
 	bottleInst.global_position = center
 	var centerDir = screenCenter - bottleInst.global_position
-	print("center dir: ", centerDir)
 	bottleInst.throw(centerDir , 1000)
 
 			
 func spawnDrop(proj) -> void:
-	#var screenCenter = get_viewport().get_visible_rect().size / 2
-	#var center = viewportSize/2.0
-	##want to make it so the y is at the bottom
-	#center.y = -viewportSize.y
-	##we want to randomize the x
-	#var minX = -center.x + center.x
-	#var maxX = center.x + center.x
-	#center.x = randi_range(minX, maxX)
-	#var dropInst = proj.instantiate()
-	##set to current image
-	#bottles.add_child(dropInst)
-	#dropInst.global_position = center
 	var viewport_size = get_viewport().get_visible_rect().size
 
 	# Random X across the full screen width
@@ -190,18 +179,18 @@ func bottleHit(bot) -> void:
 	for bottle in bottles.get_children():
 		if bot == bottle:
 			#Delete
-			print("in delete")
 			bar.emit_signal("addProgress")
 			bottle.hideSprite()
 			totBottles-=1
+			print("getting rid of bottle from hit, ", totBottles)
 			#bottle.queue_free()
 			
 func bombHit(bom) -> void:
 	for bomb in bottles.get_children():
 		if bom == bomb:
-			print("deleting bomb")
 			bomb.hideSprite()
 			#bomb.queue_free()
+			totBottles-=1
 			healthUI.emit_signal("damageTaken")
 			#and then detrimate health
 			
@@ -220,7 +209,6 @@ func _onGameWin():
 	
 func _onPlayHitSound(throwType : Globals.BottleType) -> void:
 	audioPlayer.stream = throwSoundMap[throwType]
-	print("audio stream: ", audioPlayer.stream)
 	audioPlayer.play()
 	
 func deleteProj(projectile):
@@ -234,8 +222,6 @@ func make_gradient(color1: Color, color2: Color) -> ParticleProcessMaterial:
 	return mat
 	
 func getGradientMapping(bottleType):
-	print("type: ", bottleType, "lvel: ", Globals.curLevel)
-	print("mapping: ", parMapping)
 	return parMapping[[Globals.curLevel, bottleType]]
 	
 func returnScreenBound(projCoords) -> bool:
@@ -245,15 +231,7 @@ func returnScreenBound(projCoords) -> bool:
 	return screen_rect.has_point(projCoords)
 	
 func _onProjOOB(projectile) -> void:
-	# hittable projectable has gone out of bounds, delete bullet
-	print("outside of loop in on proj oob")
-	for proj in bottles.get_children():
-		if proj == projectile:
-			#Delete
-			print("in delete, OOB")
-			healthUI.emit_signal("damageTaken")
-			proj.queue_free()
-			totBottles-=1
+	pass
 			
 			
 
@@ -263,14 +241,14 @@ func _onAreaEntered(area: Area2D) -> void:
 
 
 func _onBodyAreaEntered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	print("hi")
-	
 	for proj in bottles.get_children():
-		print("proj, ", proj.getBody(), " body, ", body)
 		if proj.getBody() == body and proj.isVisible() and proj.getType() != Globals.BottleType.BOMB:
 			#Delete
 			healthUI.emit_signal("damageTaken")
 			proj.queue_free()
 			totBottles-=1
+			print("getting rid of bottle by OOB", totBottles)
 		elif proj.getType() == Globals.BottleType.BOMB and proj.isVisible():
 			proj.queue_free()
+			totBottles-=1
+			print("getting rid of bomb by OOB", totBottles)

@@ -43,7 +43,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var inBounds = get_tree().current_scene.returnScreenBound(self.global_position)
 	if !inBounds:
-		print("out of bounds")
 		get_tree().current_scene.emit_signal("projOOB",self)
 	
 func throw(d1, d2):
@@ -53,13 +52,11 @@ func throw(d1, d2):
 
 func _onInputEvent(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event.is_action_pressed("click"):
-		print("click regersteri")
 		get_tree().current_scene.emit_signal("playHitSound",currentBottle )
 		particles.emitting = true
 		if currentBottle == Globals.BottleType.SHATTER:
 			get_tree().current_scene.bottleHit(self)
 		if currentBottle == Globals.BottleType.BOMB:
-			print("hitting bomb")
 			get_tree().current_scene.bombHit(self.get_parent())
 		if currentBottle == Globals.BottleType.DROP:
 			get_tree().current_scene.bottleHit(self.get_parent())
@@ -94,17 +91,11 @@ func changeType(newType):
 func addFriction(val):
 	rigidBody.linear_damp = val
 	
-#func changeImage(image) -> void:
-	#print("imageL ", image, " sprite: ", sprite)
-	#sprite.texture = image
-	#changeSprite(sprite)
-	
 func getType() -> Globals.BottleType:
 	return currentBottle
 
 func playSound() -> void:
 	audio.stream = bottleSound
-	print("we are playing sound", audio.get_stream_playback())
 	if audio.stream != null:	
 		audio.play()
 		audio.playing = true
@@ -121,10 +112,7 @@ func _OnParticlesDone() -> void:
 	get_tree().current_scene.deleteProj(get_parent())
 	
 func setPColor():
-	
-	print("setting p color")
 	var mat = get_tree().current_scene.getGradientMapping(currentBottle)
-	print("mat color: ", mat.color)
 	particles.color = mat.color
 	particles.material = mat
 	

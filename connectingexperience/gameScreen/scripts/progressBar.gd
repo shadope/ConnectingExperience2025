@@ -5,7 +5,7 @@ signal addProgress
 @onready var bar = $TextureProgressBar
 
 #default
-var totBottles = 10
+var totBottles = Globals.barMapping[Globals.curLevel]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
