@@ -39,6 +39,7 @@ var throwImages = []
 var totBottles = 0
 var spawnDelta = 0.0
 var lastBombSide = ""
+var dropXMax
 @onready var maxBottles = Globals.diffMapping[Globals.curLevel]
 @onready var throwImageMap = {}
 @onready var screenCenter = get_viewport().get_visible_rect().size / 2
@@ -54,10 +55,13 @@ var lastBombSide = ""
 @onready var parMapping = {}
 
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#TODO set the sprites here lol 
 	totBottles = 0
+	dropXMax = ProgressBar
 	background.texture = Globals.getBackground()
 	#set throwable images
 	throwImages = Globals.getThrowableImageList()
@@ -92,9 +96,12 @@ func _process(delta: float) -> void:
 		
 	var toSpawn = maxBottles - totBottles
 	toSpawn = randi_range(0,toSpawn)
+	print("to spawn: ", toSpawn, " max bottles: ", maxBottles, " bottles on screen: ", totBottles)
 	spawnDelta+=delta
-	if totBottles < maxBottles and spawnDelta > 1:
+	
+	if totBottles+toSpawn < maxBottles and spawnDelta > 1:
 		spawnDelta = 0.0
+		print("spawning extra")
 		for i in range(0,toSpawn):
 			spawnBottle()
 		

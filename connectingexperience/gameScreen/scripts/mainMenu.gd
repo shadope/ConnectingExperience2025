@@ -23,3 +23,7 @@ func _process(delta: float) -> void:
 func _onPlayButtonUp() -> void:
 	#we want to launch the game 
 	get_tree().change_scene_to_file("res://gameScreen/startScene.tscn")
+
+
+func _onSettingsButtonUp() -> void:
+	get_tree().change_scene_to_file("res://gameScreen/settings.tscn")

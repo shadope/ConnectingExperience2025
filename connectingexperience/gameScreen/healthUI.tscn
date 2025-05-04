@@ -7,20 +7,20 @@
 script = ExtResource("1_rl7bi")
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 81.0
-offset_top = 951.0
-offset_right = 416.0
-offset_bottom = 1067.0
+offset_left = -1.0
+offset_top = 891.0
+offset_right = 361.0
+offset_bottom = 1074.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.641
 anchor_bottom = -0.641
-offset_left = -90.0
-offset_top = 68.356
-offset_right = 421.0
-offset_bottom = 200.356
+offset_left = -179.0
+offset_top = 107.303
+offset_right = 541.0
+offset_bottom = 317.303
 alignment = 1
 
 [node name="bullet1" type="TextureRect" parent="Panel/HBoxContainer"]

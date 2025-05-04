@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3ne7s8dn7rlf"]
+
+[ext_resource type="Script" path="res://gameScreen/scripts/settings.gd" id="1_mtk0b"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_evr1t"]
+allow_unpress = true
+
+[node name="Settings" type="Node2D"]
+script = ExtResource("1_mtk0b")
+
+[node name="background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="sliders" type="VBoxContainer" parent="."]
+offset_left = 96.0
+offset_top = -31.0
+offset_right = 941.0
+offset_bottom = 439.0
+scale = Vector2(2, 2)
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="gameSlider" type="HSlider" parent="sliders"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="sliders/gameSlider"]
+layout_mode = 2
+offset_left = 6.0
+offset_top = -49.0
+offset_right = 137.0
+offset_bottom = -14.0
+text = "Game Volume"
+
+[node name="musicSlider" type="HSlider" parent="sliders"]
+layout_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="sliders/musicSlider"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -49.0
+offset_right = 244.0
+offset_bottom = -14.0
+text = "Background/Ambient Volume"
+
+[node name="Difficulty" type="TextEdit" parent="."]
+offset_left = 96.0
+offset_top = 725.0
+offset_right = 434.0
+offset_bottom = 794.0
+theme_override_font_sizes/font_size = 40
+text = "Game Difficulty"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 85.0
+offset_top = 817.0
+offset_right = 447.0
+offset_bottom = 857.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+
+[node name="Easy" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+action_mode = 0
+button_group = SubResource("ButtonGroup_evr1t")
+text = "Easy"
+
+[node name="medium" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+text = "Medium"
+
+[node name="hard" type="CheckBox" parent="HBoxContainer"]
+layout_mode = 2
+text = "Hard"
+
+[node name="backButton" type="Button" parent="."]
+offset_right = 237.0
+offset_bottom = 84.0
+text = "Back
+"
+
+[connection signal="button_up" from="HBoxContainer/Easy" to="." method="buttonUp"]
+[connection signal="button_up" from="HBoxContainer/medium" to="." method="mediumButtonUp"]
+[connection signal="button_up" from="HBoxContainer/hard" to="." method="hardButtonUp"]
+[connection signal="button_up" from="backButton" to="." method="_onBackButtonUP"]

@@ -29,13 +29,16 @@ extends Node
 enum BottleType { SHATTER, BOMB, DROP }
 enum levels {START, CAVE, POWERLINE, END}
 var curLevel = levels.START
+enum diff {EASY, MED, HARD}
+var curDiff = diff.MED
+
 @onready var backgroundMap = {levels.START : lev1Background, levels.CAVE : lev2Background, levels.POWERLINE : lev3Background}
 #mappings to throwable images per levelle
 @onready var throwImageMap = { levels.START : [lev1Bottle, lev1Droppable, lev1Bomb],
 							   levels.CAVE : [lev2Bottle, lev2Droppable, lev2Bomb],
 							   levels.POWERLINE : [lev3Bottle, lev3Droppable, lev3Bomb]
 }
-@onready var diffMapping = {levels.START : 1, levels.CAVE : 2, levels.POWERLINE : 3}
+@onready var diffMapping = {levels.START : 2, levels.CAVE : 3, levels.POWERLINE : 4}
 @onready var barMapping = {levels.START : 10, levels.CAVE : 30, levels.POWERLINE : 40}
 
 #scene packs aya
@@ -57,3 +60,14 @@ func getBackground() -> Texture2D:
 func getThrowableImageList() -> Array:
 	return throwImageMap[curLevel]
 	
+func changeDif() -> void:
+	match Globals.curDiff:
+		diff.EASY:
+			diffMapping = {levels.START : 1, levels.CAVE : 2, levels.POWERLINE : 2}
+			barMapping = {levels.START : 10, levels.CAVE : 10, levels.POWERLINE : 20}
+		diff.MED:
+			diffMapping = {levels.START : 2, levels.CAVE : 3, levels.POWERLINE : 3}
+			barMapping = {levels.START : 10, levels.CAVE : 20, levels.POWERLINE : 30}
+		diff.HARD:
+			diffMapping = {levels.START : 2, levels.CAVE : 3, levels.POWERLINE : 4}
+			barMapping = {levels.START : 10, levels.CAVE : 30, levels.POWERLINE : 40}
