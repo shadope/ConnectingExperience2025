@@ -109,11 +109,12 @@ func spawnBottle():
 
 func spawnProj(proj) -> void:
 	var sideVal = sides[randi_range(0,2)]
+	var center = viewportSize/2.0
+	var bottleInst
 	match sideVal:
 		var x when x == "bottom":
 			#we want to spawn from the bottom of the screen, meaning we have to generate a value
 			#randomly within those fields, y does not chaneg, x does'
-			var center = viewportSize/2.0
 			#want to make it so the y is at the bottom
 			center.y = viewportSize.y
 			#we want to randomize the x
@@ -121,15 +122,7 @@ func spawnProj(proj) -> void:
 			var maxX = center.x + center.x
 			center.x = randi_range(minX, maxX)
 			#lets just spawn it at the center for now
-			var bottleInst = proj.instantiate()
-			bottles.add_child(bottleInst)
-			bottleInst.global_position = center
-			
-			var centerDir  = screenCenter - bottleInst.global_position
-			print("center dir: ", centerDir)
-			bottleInst.throw(centerDir , 1000)
 		var x when x == "left":
-			var center = viewportSize/2.0
 			#want to make it so the y is at the bottom
 			center.x = viewportSize.x - viewportSize.x
 			#we want to randomize the x
@@ -137,14 +130,7 @@ func spawnProj(proj) -> void:
 			var maxY = center.y + center.y
 			center.y = randi_range(minY, maxY)
 			#lets just spawn it at the center for now
-			var bottleInst = proj.instantiate()
-			bottles.add_child(bottleInst)
-			bottleInst.global_position = center
-			var centerDir  = screenCenter - bottleInst.global_position
-			print("center dir: ", centerDir)
-			bottleInst.throw(centerDir , 1000)
 		var x when x == "right":
-			var center = viewportSize/2.0
 			#want to make it so the y is at the bottom
 			center.x = center.x + center.x
 			#we want to randomize the x
@@ -152,12 +138,13 @@ func spawnProj(proj) -> void:
 			var maxY = center.y + center.y
 			center.y = randi_range(minY, maxY)
 			#lets just spawn it at the center for now
-			var bottleInst = proj.instantiate()
-			bottles.add_child(bottleInst)
-			bottleInst.global_position = center
-			var centerDir = screenCenter - bottleInst.global_position
-			print("center dir: ", centerDir)
-			bottleInst.throw(centerDir , 1000)
+	bottleInst = proj.instantiate()
+	bottles.add_child(bottleInst)
+	bottleInst.global_position = center
+	var centerDir = screenCenter - bottleInst.global_position
+	print("center dir: ", centerDir)
+	bottleInst.throw(centerDir , 1000)
+
 			
 func spawnDrop(proj) -> void:
 	var screenCenter = get_viewport().get_visible_rect().size / 2
