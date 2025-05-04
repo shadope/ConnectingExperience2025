@@ -37,6 +37,7 @@ var viewportSize
 var time = 0
 var throwImages = []
 var totBottles = 0
+var spawnDelta = 0.0
 @onready var maxBottles = Globals.diffMapping[Globals.curLevel]
 @onready var throwImageMap = {}
 @onready var screenCenter = get_viewport().get_visible_rect().size / 2
@@ -86,6 +87,15 @@ func _process(delta: float) -> void:
 	gunSight.global_position = get_viewport().get_mouse_position()
 	if Input.is_action_pressed("click") and gun.playing == false:
 		gun.play()
+		
+	var toSpawn = maxBottles - totBottles
+	toSpawn = randi_range(0,toSpawn)
+	spawnDelta+=delta
+	if totBottles < maxBottles and spawnDelta > 1:
+		spawnDelta = 0.0
+		for i in range(0,toSpawn):
+			spawnBottle()
+		
 		
 	#what we want to do is spawn bottles randomly from the top 3 sides
 	
@@ -157,7 +167,7 @@ func spawnDrop(proj) -> void:
 	var x_pos = randf_range(0, viewport_size.x)
 
 	# Y position at the top of the screen (just above view if you want it to drop in)
-	var y_pos = -50  # or -50 to spawn slightly offscreen
+	var y_pos = -70  # or -50 to spawn slightly offscreen
 
 	var drop_inst = proj.instantiate()
 	bottles.add_child(drop_inst)
